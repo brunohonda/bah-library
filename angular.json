@@ -3,5 +3,36 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
+    "bah-library": {
+      "projectType": "library",
+      "root": "projects/bah-library",
+      "sourceRoot": "projects/bah-library/src",
+      "prefix": "bah",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/bah-library/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/bah-library/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/bah-library/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/bah-library/src/test.ts",
+            "tsConfig": "projects/bah-library/tsconfig.spec.json",
+            "karmaConfig": "projects/bah-library/karma.conf.js"
+          }
+        }
+      }
+    }
   }
 }
