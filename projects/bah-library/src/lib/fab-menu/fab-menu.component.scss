@@ -6,6 +6,7 @@ $animation-delay: 50ms;
   display: inline-flex;
   justify-content: center;
   align-items: center;
+  z-index: 9999;
 
   &-item {
     position: absolute;
