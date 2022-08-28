@@ -1,3 +1,6 @@
+$animation-duration: 150ms;
+$animation-delay: 50ms;
+
 .fab-menu {
   position: relative;
   display: inline-flex;
@@ -6,5 +9,41 @@
 
   &-item {
     position: absolute;
+    transition: transform ease-out $animation-duration calc(var(--fab-menu-item-index) * $animation-delay);
+    z-index: calc(var(--fab-menu-item-index) * -1);
+
+    &__label {
+      position: absolute;
+      left: calc(90%);
+      opacity: 0;
+      color: black;
+      transition: all ease-out $animation-duration calc(var(--fab-menu-item-index) * ($animation-delay * 2));
+    }
+  }
+
+  &.bottom {
+    &.open {
+      .fab-menu-item {
+        transform: translateY(calc((100% + .5rem) * (var(--fab-menu-item-index) + 1) + .5rem));
+
+        &__label {
+          opacity: 1;
+          left: calc(100% + .5rem);;
+        }
+      }
+    }
+  }
+
+  &.top {
+    &.open {
+      .fab-menu-item {
+        transform: translateY(calc(((100% + .5rem) * (var(--fab-menu-item-index) + 1) + .5rem) * -1));
+
+        &__label {
+          opacity: 1;
+          left: calc(100% + .5rem);
+        }
+      }
+    }
   }
 }
