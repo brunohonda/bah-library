@@ -10,6 +10,7 @@ export class FabMenuComponent implements OnInit {
 
   @Input() items: FabMenuItem[] = [];
   @Input() icon: string = 'add';
+  @Input() label: string = 'Floating menu';
 
   @Output() open = new EventEmitter();
   @Output() close = new EventEmitter();

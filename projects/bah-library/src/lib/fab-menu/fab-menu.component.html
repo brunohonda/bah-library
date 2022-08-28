@@ -4,12 +4,17 @@
     mat-mini-fab
     [color]="item.color ?? 'secondary'"
     [attr.aria-label]="item.label"
+    (click)="itemClickHandler(item)"
   >
     <mat-icon *ngIf="item.svgIcon" [svgIcon]="item.svgIcon"></mat-icon>
-    <mat-icon *ngIf="item.icon">{{ item.icon }}</mat-icon>
+    <mat-icon *ngIf="!item.svgIcon">{{ item.icon ?? 'more_horiz' }}</mat-icon>
     <span>{{ item.label }}</span>
   </button>
-  <button mat-fab [color]="'accent'" aria-label="Example icon button with a heart icon">
+  <button mat-fab
+    [attr.aria-label]="label"
+    [color]="'accent'"
+    (click)="toggle()"
+  >
     <mat-icon>{{ icon }}</mat-icon>
   </button>
 </div>
