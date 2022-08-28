@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FabMenuItem } from './fab-menu-item.type';
 
 @Component({
@@ -9,12 +9,40 @@ import { FabMenuItem } from './fab-menu-item.type';
 export class FabMenuComponent implements OnInit {
 
   @Input() items: FabMenuItem[] = [];
-
   @Input() icon: string = 'add';
+
+  @Output() open = new EventEmitter();
+  @Output() close = new EventEmitter();
+  @Output() click = new EventEmitter<FabMenuItem>();
+
+  isOpen = false;
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  toggle() {
+    if(this.isOpen) {
+      this.closeMenu();
+      return;
+    }
+
+    this.openMenu();
+  }
+
+  itemClickHandler(item: FabMenuItem) {
+    this.click.emit(item);
+    this.closeMenu();
+  }
+
+  private openMenu() {
+    this.isOpen = true;
+    this.open.emit();
+  }
+
+  private closeMenu() {
+    this.isOpen = false;
+    this.close.emit();
+  }
 }
